@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <style type="text/css">
         body {
@@ -147,6 +146,16 @@
         @media only screen and (max-width: 300px) {
           .text {font-size: 11px}
         }
+
+        .btn {
+            margin-top: .5rem;
+            text-align: center;
+        }
+
+        .timestamp {
+            margin: 1rem 0;
+            vertical-align: middle;
+        }
     </style>
 
 
@@ -158,8 +167,17 @@
             $.getJSON(link, function (yo) {
                 // YO should be Array of Posts
                 $.each(yo, function (index, value) {
-                    $('#posts').append('<div class="tile"><span id="title">'+ value.title+ '</span><hr><span id="content">' + value.content + '</span></div>');
+                    $('#posts').append('<div class="tile"><div id="id" style="display:none;"> ' + value.id + ' </div><span id="title">'+ value.title+ '</span><hr><span id="content">' + value.content + '</span><div class="timestamp"><i class="far fa-clock" style="font-size: 1.5rem"></i><span id="timestamp"> ' + value.timestamp + ' </span></div><div class="btn"><center><a id="True" class="button is-success"><span class="icon is-small"><i class="fas fa-check"></i></span><span>Attending</span></a><a id="False" class="button is-danger"><span>Won\'t be joining</span><span class="icon is-small"><i class="fas fa-times"></i></span></a></center></div></div>');
                 });
+            });
+
+            $('#True').click(function() {
+                var id = $('#id').val();
+                console.log(id);
+                console.log("I'm True")
+            });
+            $('#False').click(function() {
+                console.log("I'm False")
             });
         });
     </script>
@@ -174,13 +192,13 @@
     </header>
     <div class="slideshow-container">
         <div class="mySlides fade">
-          <img src="./images/2.png">
+          <img src="./images/Ann1.png">
         </div>
         <div class="mySlides fade">
-          <img src="./images/2.png">
+          <img src="./images/Ann2.png">
         </div>
         <div class="mySlides fade">
-          <img src="./images/2.png">
+          <img src="./images/Ann3.png">
         </div>
         <div style="text-align:center; margin-top: .7rem;">
           <span class="dot"></span> 
@@ -216,6 +234,26 @@
             <span id="title">Title of the announcement </span>
             <hr>
             <span id="content"> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look</span>
+            <div class="timestamp">
+                <i class="far fa-clock" style="font-size: 1.5rem"></i>
+                <span id="timestamp"></span>
+            </div>
+            <div class="btn">
+                <center>
+                <a id="True" class="button is-success">
+                    <span class="icon is-small">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span>Attending</span>
+                </a>
+                <a id="False" class="button is-danger">
+                    <span>Won't be joining</span>
+                    <span class="icon is-small">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </a>
+                </center>
+            </div>
         </div>
         <div class="tile">
             <span id="title"> Title of the announcement </span>
